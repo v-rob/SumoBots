@@ -267,9 +267,9 @@ class SumoBots(wx.Frame):
 		if type == 0:
 			# Delete all data.
 			self.data = deepcopy(self.defaultData)
-			self.dialog.Close()
 			self.CalcMatches()
 			self.UpdateTeams()
+			self.dialogError.SetLabel("")
 		elif type == 1:
 			# Reset match to 0.
 			self.data["match"] = 0
@@ -277,8 +277,8 @@ class SumoBots(wx.Frame):
 				team[1] = 0
 				team[2] = 0
 				team[3] = 0
-			self.dialog.Close()
 			self.UpdateTeams()
+			self.dialogError.SetLabel("")
 		elif type == 2:
 			# Recalculate match lineup and reset points.
 			self.CalcMatches()
@@ -287,22 +287,22 @@ class SumoBots(wx.Frame):
 				team[1] = 0
 				team[2] = 0
 				team[3] = 0
-			self.dialog.Close()
 			self.UpdateTeams()
+			self.dialogError.SetLabel("")
 		elif type == 3:
 			# Set all points to 0.
 			for team in self.data["teams"]:
 				team[1] = 0
 				team[2] = 0
 				team[3] = 0
-			self.dialog.Close()
 			self.UpdateTeams()
+			self.dialogError.SetLabel("")
 		else:
 			# Jump to a specified match.
 			if match.isdigit() and int(match) - 1 <= len(self.data["lineup"]) and int(match) - 1 >= 0:
 				self.data["match"] = int(match) - 1
-				self.dialog.Close()
 				self.UpdateTeams()
+				self.dialogError.SetLabel("")
 			else:
 				self.dialogError.SetLabel("Error: Invalid match.")
 	
